@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏰 Forjar Nueva Arca Real 💰</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h2><i class="fas fa-credit-card"></i>Forjar Nueva Arca</h2>
+
+        <form th:action="@{/admin/crear-cuenta}" method="post"th:object="${cuenta}">
+            <div class="form-group">
+                <label><i class="fas fa-user-tie"></i>Sello del Vasallo: </label>
+                <input type="text" th:field="*{}" name="numero" required>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-hashtag"></i>Código del Arca:  </label>
+                <input type="text" th:field="*{}" name="identificacion" required>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-list-alt"></i>Naturaleza del Arca: </label>
+                <select name="tipo">
+                    <option value="AHORROS">Ahorros</option>
+                    <option value="CORRIENTE">Corriente</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <i class="fas fa-coins"></i>Tributo Inicial:
+                </label>
+                <input type="number" name="saldo" required>
+            </div>
+
+            <button type="submit" class="admin-btn">
+                <i class="fas fa-save"></i>⚒️ Forjar Arca
+            </button>
+        </form>
+
+        <div  th:if="${mensaje}" th:text="${mensaje}"
+        th:class="${error} ? 'message error': 'message success'"></div>
+
+        <a th:href="@{/admin}" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Retornar a la Corte Real
+        </a>
+    </div>
+    
+</body>
+</html>
